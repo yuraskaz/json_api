@@ -19,6 +19,7 @@ Bundler.require(*Rails.groups)
 module JsonApi
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.app_generators.scaffold_controller :responders_controller
     config.load_defaults 5.1
 
     # Settings in config/environments/* take precedence over those specified here.
@@ -29,5 +30,8 @@ module JsonApi
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
   end
+  
+  
 end
