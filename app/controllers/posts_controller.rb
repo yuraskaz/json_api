@@ -1,10 +1,24 @@
 class PostsController < ApplicationController
-	respond_to :json
+	
 
-  def create
+  def index
+    @post=Post.all
+    render json: @post
+  end
+
+  
+
+
+	def create
+    
     user = User.post_owner create_post_params[:login]
-    @post =Post.create(build_post_params(user))
-    respond_with @post
+    
+    @post = Post.new(build_post_params(user))
+    
+    if @post.save
+      render json: { status: 200 , }.to_json
+      
+    end
   end
 
   private
