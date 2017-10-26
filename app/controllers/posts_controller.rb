@@ -6,31 +6,30 @@ class PostsController < ApplicationController
     render json: @post
   end
 
+  def show
+    @post= Post.by_rate
+    render json: @post
+  end
+
   
 
 
 	def create
-    
-    user = User.post_owner create_post_params[:login]
-    
-    @post = Post.new(build_post_params(user))
-    
+    @params = set_params
+    @params[:user_id] = User.create_if_not_exists(@params.delete(:login))
+    @post = Post.new(@params)
     if @post.save
-      render json: { status: 200 , }.to_json
+      render json: @post, status: 200
     else
-      render json: { status: 422}.to_json
-      
+      render json: @post.errors, status: 422
     end
   end
 
   private
 
-    def build_post_params(user)
-      create_post_params.merge(user: user).reject { |k, _| k == 'login' }
-    end
+  def set_params
+    params.require(:post).permit(:title, :body, :login, :ip)
+  end
 
-    def create_post_params
-      params.require(:post).permit(:title, :body, :ip, :login)
-    end
 end
 

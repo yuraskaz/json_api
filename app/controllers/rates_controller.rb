@@ -1,19 +1,20 @@
 class RatesController < ApplicationController
 
-	def create
-        @rate = Rate.new(rate_params[:rating])
-        render(nothing: true) unless @post = Post.find(rate_params[:post_id])
-        @rate.post_id = @post.id
-      if @rate.save
-        render json:  @post&.rating
-      else
-        render nothing: true
-      end
+	def set
+	
+
+    @rate = Rate.new(set_params)
+    if @rate.save
+      render json: @rate, status: 200
+    else
+      render json: @rate.errors, status: 400
     end
+  end
 
   private
 
-    def rate_params
-      params.require(:rate).permit(:rating,:post_id)
-    end
+  def set_params
+    params.require(:rate).permit(:rating, :post_id)
+  end
 end
+

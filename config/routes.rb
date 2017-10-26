@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :posts do
-  	resources :rates ,only:[:create]
-  end
+  post 'rates/set'
+
+  post 'posts/create'
+
+  get 'posts/index'
+  get 'posts/show'
+
+  get 'users/index'
 end

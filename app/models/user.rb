@@ -1,12 +1,10 @@
 class User < ApplicationRecord
 	has_many :posts
 
-	 def self.post_owner(login)
-       user = find_by_login(login)
-     if user&.persisted?
-       user
-     else
-       User.create!(login: login)
-    end
+  def self.create_if_not_exists(login)
+    user = find_by(login: login)
+    return user.id if user
+    user = create(login: login)
+    user.id
   end
 end
