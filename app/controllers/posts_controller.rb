@@ -17,6 +17,8 @@ class PostsController < ApplicationController
     
     if @post.save
       render json: { status: 200 , }.to_json
+    else
+      render json: { status: 422}.to_json
       
     end
   end
