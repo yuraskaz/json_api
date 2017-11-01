@@ -39,13 +39,13 @@ create post and user (send hash  example: {"post":
 }
 })
 ```
-POST  `localhost:3000/posts   
+POST  localhost:3000/posts   
 ```
 
 get  Top (20) post
 
 ```
-GET  `localhost:3000/posts/show
+GET  localhost:3000/posts/show
 ```
 
 put an estimate post (send hash example: { "rate": {
@@ -53,7 +53,7 @@ put an estimate post (send hash example: { "rate": {
 })
 
 ```
-POST `localhost:3000/rates/set
+POST localhost:3000/rates/set
 ```
 
 

@@ -1,8 +1,6 @@
 class RatesController < ApplicationController
 
-	def set
-	
-
+  def set
     @rate = Rate.new(set_params)
     if @rate.save
       render json: @rate, status: 200

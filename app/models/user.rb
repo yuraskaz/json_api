@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-	has_many :posts
+  has_many :posts
 
   def self.create_if_not_exists(login)
     user = find_by(login: login)

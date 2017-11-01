@@ -1,20 +1,16 @@
 class PostsController < ApplicationController
-	
 
   def index
-    @post=Post.all
+    @post = Post.all
     render json: @post
   end
 
   def show
-    @post= Post.by_rate
+    @post = Post.by_rate
     render json: @post
   end
 
-  
-
-
-	def create
+  def create
     @params = set_params
     @params[:user_id] = User.create_if_not_exists(@params.delete(:login))
     @post = Post.new(@params)
